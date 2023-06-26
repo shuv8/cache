@@ -196,3 +196,134 @@ module cache(
         .output_data(r_data)
     );
 endmodule
+
+
+module cache_memory(
+    cpu_reset,
+    cache_reset,
+    ram_reset,
+    cpu_clk,
+    cache_clk,
+    ram_clk,
+    cpu_addr,
+    cpu_wr,
+    cpu_rd,
+    cpu_wdata,
+    cpu_bval,
+    cpu_rdata,
+    cpu_ack,
+    ram_rdata,
+    ram_ack,
+    ram_wdata,
+    ram_addr,
+    ram_avalid,
+    ram_rnw
+);
+    localparam ADDR_SIZE = 16;
+    localparam ADDR_TAG_SIZE = 12;
+    localparam CPU_DATA_SIZE = 32;
+    localparam BVAL_SIZE = 4;
+    localparam RAM_DATA_SIZE = 128;
+    localparam RAM_BUS_SIZE = 8;
+    localparam CACHE_DATA_SIZE = RAM_DATA_SIZE;
+    
+    input cpu_clk, cache_clk, ram_clk;
+    input cpu_reset, cache_reset, ram_reset;
+    
+    // Inputs-outputs of CPU
+    input [ADDR_SIZE-1:0] cpu_addr;
+    input cpu_wr;
+    input cpu_rd;
+    input [CPU_DATA_SIZE-1:0] cpu_wdata;
+    input [BVAL_SIZE-1:0] cpu_bval;
+    
+    output wire [CPU_DATA_SIZE-1:0] cpu_rdata;
+    output wire cpu_ack;
+    
+    // Inputs-outputs of RAM
+    input [RAM_BUS_SIZE-1:0] ram_rdata;
+    input ram_ack;
+    
+    output wire [RAM_BUS_SIZE-1:0] ram_wdata;
+    output wire [ADDR_TAG_SIZE-1:0] ram_addr;
+    output wire ram_avalid;
+    output wire ram_rnw;
+    
+    // Wires CPU - cache
+    wire [ADDR_SIZE-1:0] cpu_cache_addr;
+    wire cpu_cache_wr;
+    wire cpu_cache_rd;
+    wire [CPU_DATA_SIZE-1:0] cpu_cache_wdata;
+    wire [BVAL_SIZE-1:0] cpu_cache_bval;
+    wire [CPU_DATA_SIZE-1:0] cache_cpu_rdata;
+    wire cache_cpu_ack;
+    
+    // Wires cache - RAM
+    wire [ADDR_TAG_SIZE-1:0] cache_ram_addr;
+    wire [CACHE_DATA_SIZE-1:0] cache_ram_wdata;
+    wire cache_ram_rd;
+    wire cache_ram_wr;
+    wire [CACHE_DATA_SIZE-1:0] cache_ram_rdata;
+    wire cache_ack;
+    
+    
+    cpu_interface cpu_interface(
+        .cpu_reset(cpu_reset),
+        .cache_reset(cache_reset),
+        .cpu_addr(cpu_addr),
+        .cpu_wr(cpu_wr),
+        .cpu_rd(cpu_rd),
+        .cpu_wdata(cpu_wdata),
+        .cpu_bval(cpu_bval),
+        .cpu_clk(cpu_clk),
+        .cpu_rdata(cpu_rdata),
+        .cpu_ack(cpu_ack),
+        .cache_rdata(cache_cpu_rdata),
+        .cache_ack(cache_cpu_ack),
+        .cache_clk(cache_clk),
+        .cache_addr(cpu_cache_addr),
+        .cache_wr(cpu_cache_wr),
+        .cache_rd(cpu_cache_rd),
+        .cache_wdata(cpu_cache_wdata),
+        .cache_bval(cpu_cache_bval)
+    );
+    
+    ram_interface ram_interface(
+        .cache_wdata(cache_ram_wdata),
+        .cache_addr(cache_ram_addr),    
+        .cache_wr(cache_ram_wr),
+        .cache_rd(cache_ram_rd),
+        .cache_rst(cache_reset),
+        .cache_clk(cache_clk),
+        .cache_rdata(cache_ram_rdata),
+        .cache_ack(cache_ack),
+        .ram_rdata(ram_rdata),
+        .ram_ack(ram_ack),
+        .ram_rst(ram_reset),
+        .ram_clk(ram_clk),
+        .ram_wdata(ram_wdata),
+        .ram_addr(ram_addr),
+        .ram_avalid(ram_avalid),
+        .ram_rnw(ram_rnw)  
+    );
+    
+    cache cache(
+        .CLK(cache_clk),
+        .areset(cache_reset),
+        .addr(cpu_cache_addr),
+        .cpu_wr(cpu_cache_wr),
+        .cpu_rd(cpu_cache_rd),
+        .w_data(cpu_cache_wdata),
+        .b_val(cpu_cache_bval),
+        .r_data(cache_cpu_rdata),
+        .cpu_ack(cache_cpu_ack),
+        .ram_wdata(cache_ram_wdata),
+        .ram_addr_tag(cache_ram_addr),
+        .ram_wr(cache_ram_wr),
+        .ram_rd(cache_ram_rd),
+        .ram_rdata(cache_ram_rdata),
+        .ram_ack(cache_ack)
+    );
+    
+endmodule
+
