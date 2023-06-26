@@ -1,3 +1,4 @@
 Time resolution is 1 ps
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+$finish called at time : 1162 ns : File "C:/Xilinx/Projects/cache/cache.srcs/sim_1/new/TB_READ.v" Line 160

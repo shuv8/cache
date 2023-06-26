@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="TB_READ_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="TB_READ" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,380.212 ns"></ZoomEndTime>
+      <Cursor1Time time="51.066 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="182"></NameColumnWidth>
+      <ValueColumnWidth column_width="87"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="27" />
+   <wvobject fp_name="group105" type="group">
+      <obj_property name="label">Reset</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/cpu_reset" type="logic">
+         <obj_property name="ElementShortName">cpu_reset</obj_property>
+         <obj_property name="ObjectShortName">cpu_reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_reset" type="logic">
+         <obj_property name="ElementShortName">cache_reset</obj_property>
+         <obj_property name="ObjectShortName">cache_reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/ram_reset" type="logic">
+         <obj_property name="ElementShortName">ram_reset</obj_property>
+         <obj_property name="ObjectShortName">ram_reset</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group106" type="group">
+      <obj_property name="label">CLK</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/cpu_clk" type="logic">
+         <obj_property name="ElementShortName">cpu_clk</obj_property>
+         <obj_property name="ObjectShortName">cpu_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_clk" type="logic">
+         <obj_property name="ElementShortName">cache_clk</obj_property>
+         <obj_property name="ObjectShortName">cache_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/ram_clk" type="logic">
+         <obj_property name="ElementShortName">ram_clk</obj_property>
+         <obj_property name="ObjectShortName">ram_clk</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider63">
+      <obj_property name="label">In-Out CPU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group103" type="group">
+      <obj_property name="label">CPU In</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/cpu_addr" type="array">
+         <obj_property name="ElementShortName">cpu_addr[15:0]</obj_property>
+         <obj_property name="ObjectShortName">cpu_addr[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cpu_wr" type="logic">
+         <obj_property name="ElementShortName">cpu_wr</obj_property>
+         <obj_property name="ObjectShortName">cpu_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cpu_rd" type="logic">
+         <obj_property name="ElementShortName">cpu_rd</obj_property>
+         <obj_property name="ObjectShortName">cpu_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cpu_wdata" type="array">
+         <obj_property name="ElementShortName">cpu_wdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cpu_wdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cpu_bval" type="array">
+         <obj_property name="ElementShortName">cpu_bval[3:0]</obj_property>
+         <obj_property name="ObjectShortName">cpu_bval[3:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group104" type="group">
+      <obj_property name="label">CPU Out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/cpu_rdata" type="array">
+         <obj_property name="ElementShortName">cpu_rdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cpu_rdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cpu_ack" type="logic">
+         <obj_property name="ElementShortName">cpu_ack</obj_property>
+         <obj_property name="ObjectShortName">cpu_ack</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider70">
+      <obj_property name="label">In-Out RAM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group107" type="group">
+      <obj_property name="label">RAM In</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/ram_rdata" type="array">
+         <obj_property name="ElementShortName">ram_rdata[7:0]</obj_property>
+         <obj_property name="ObjectShortName">ram_rdata[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/ram_ack" type="logic">
+         <obj_property name="ElementShortName">ram_ack</obj_property>
+         <obj_property name="ObjectShortName">ram_ack</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group108" type="group">
+      <obj_property name="label">RAM Out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/ram_wdata" type="array">
+         <obj_property name="ElementShortName">ram_wdata[7:0]</obj_property>
+         <obj_property name="ObjectShortName">ram_wdata[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/ram_addr" type="array">
+         <obj_property name="ElementShortName">ram_addr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">ram_addr[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/ram_avalid" type="logic">
+         <obj_property name="ElementShortName">ram_avalid</obj_property>
+         <obj_property name="ObjectShortName">ram_avalid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/ram_rnw" type="logic">
+         <obj_property name="ElementShortName">ram_rnw</obj_property>
+         <obj_property name="ObjectShortName">ram_rnw</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider71">
+      <obj_property name="label">Control Unit</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/state" type="array">
+      <obj_property name="ElementShortName">state[5:0]</obj_property>
+      <obj_property name="ObjectShortName">state[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group110" type="group">
+      <obj_property name="label">CU In</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/cpu_wr" type="logic">
+         <obj_property name="ElementShortName">cpu_wr</obj_property>
+         <obj_property name="ObjectShortName">cpu_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/cpu_rd" type="logic">
+         <obj_property name="ElementShortName">cpu_rd</obj_property>
+         <obj_property name="ObjectShortName">cpu_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/hit" type="logic">
+         <obj_property name="ElementShortName">hit</obj_property>
+         <obj_property name="ObjectShortName">hit</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/lm" type="logic">
+         <obj_property name="ElementShortName">lm</obj_property>
+         <obj_property name="ObjectShortName">lm</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/ram_ack" type="logic">
+         <obj_property name="ElementShortName">ram_ack</obj_property>
+         <obj_property name="ObjectShortName">ram_ack</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group111" type="group">
+      <obj_property name="label">CU Out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/cpu_ack" type="logic">
+         <obj_property name="ElementShortName">cpu_ack</obj_property>
+         <obj_property name="ObjectShortName">cpu_ack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/lfu" type="logic">
+         <obj_property name="ElementShortName">lfu</obj_property>
+         <obj_property name="ObjectShortName">lfu</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/m" type="logic">
+         <obj_property name="ElementShortName">m</obj_property>
+         <obj_property name="ObjectShortName">m</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/wrT" type="logic">
+         <obj_property name="ElementShortName">wrT</obj_property>
+         <obj_property name="ObjectShortName">wrT</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/wr" type="logic">
+         <obj_property name="ElementShortName">wr</obj_property>
+         <obj_property name="ObjectShortName">wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/wsel" type="logic">
+         <obj_property name="ElementShortName">wsel</obj_property>
+         <obj_property name="ObjectShortName">wsel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/tsel" type="logic">
+         <obj_property name="ElementShortName">tsel</obj_property>
+         <obj_property name="ObjectShortName">tsel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/ram_wr" type="logic">
+         <obj_property name="ElementShortName">ram_wr</obj_property>
+         <obj_property name="ObjectShortName">ram_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/control_unit/ram_rd" type="logic">
+         <obj_property name="ElementShortName">ram_rd</obj_property>
+         <obj_property name="ObjectShortName">ram_rd</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider109">
+      <obj_property name="label">Data mem</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group116" type="group">
+      <obj_property name="label">Data mem In</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/Line" type="array">
+         <obj_property name="ElementShortName">Line[4:0]</obj_property>
+         <obj_property name="ObjectShortName">Line[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/cache_data_input" type="array">
+         <obj_property name="ElementShortName">cache_data_input[127:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_data_input[127:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/TB_READ/cache_memory/cache/data_mem" type="array">
+      <obj_property name="ElementShortName">data_mem[31:0][127:0]</obj_property>
+      <obj_property name="ObjectShortName">data_mem[31:0][127:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB_READ/cache_memory/cache/cache_data_out" type="array">
+      <obj_property name="ElementShortName">cache_data_out[127:0]</obj_property>
+      <obj_property name="ObjectShortName">cache_data_out[127:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider245">
+      <obj_property name="label">Tag mem</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group253" type="group">
+      <obj_property name="label">TM In</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/addr_tag" type="array">
+         <obj_property name="ElementShortName">addr_tag[11:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_tag[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/sig_wr" type="logic">
+         <obj_property name="ElementShortName">sig_wr</obj_property>
+         <obj_property name="ObjectShortName">sig_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/sig_lfu" type="logic">
+         <obj_property name="ElementShortName">sig_lfu</obj_property>
+         <obj_property name="ObjectShortName">sig_lfu</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/sig_md" type="logic">
+         <obj_property name="ElementShortName">sig_md</obj_property>
+         <obj_property name="ObjectShortName">sig_md</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group254" type="group">
+      <obj_property name="label">TM Out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/Line" type="array">
+         <obj_property name="ElementShortName">Line[4:0]</obj_property>
+         <obj_property name="ObjectShortName">Line[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/LTag" type="array">
+         <obj_property name="ElementShortName">LTag[12:0]</obj_property>
+         <obj_property name="ObjectShortName">LTag[12:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/Hit" type="logic">
+         <obj_property name="ElementShortName">Hit</obj_property>
+         <obj_property name="ObjectShortName">Hit</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group257" type="group">
+      <obj_property name="label">LFU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/LFU_OF" type="logic">
+         <obj_property name="ElementShortName">LFU_OF</obj_property>
+         <obj_property name="ObjectShortName">LFU_OF</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/cache/tag_mem/LFU_NUM" type="array">
+         <obj_property name="ElementShortName">LFU_NUM[4:0]</obj_property>
+         <obj_property name="ObjectShortName">LFU_NUM[4:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider258">
+      <obj_property name="label">RAM Interface</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group267" type="group">
+      <obj_property name="label">Cache2RAM In</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/TB_READ/cache_memory/ram_interface/cache_wdata" type="array">
+         <obj_property name="ElementShortName">cache_wdata[127:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_wdata[127:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/ram_interface/cache_addr" type="array">
+         <obj_property name="ElementShortName">cache_addr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_addr[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/ram_interface/cache_wr" type="logic">
+         <obj_property name="ElementShortName">cache_wr</obj_property>
+         <obj_property name="ObjectShortName">cache_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/ram_interface/cache_rd" type="logic">
+         <obj_property name="ElementShortName">cache_rd</obj_property>
+         <obj_property name="ObjectShortName">cache_rd</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group268" type="group">
+      <obj_property name="label">RAM2Cache Out</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/TB_READ/cache_memory/ram_interface/cache_rdata" type="array">
+         <obj_property name="ElementShortName">cache_rdata[127:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_rdata[127:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/TB_READ/cache_memory/ram_interface/cache_ack" type="logic">
+         <obj_property name="ElementShortName">cache_ack</obj_property>
+         <obj_property name="ObjectShortName">cache_ack</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/TB_READ/cache_memory/ram_interface/state" type="array">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB_READ/cache_memory/ram_interface/REG_NUM" type="array">
+      <obj_property name="ElementShortName">REG_NUM[4:0]</obj_property>
+      <obj_property name="ObjectShortName">REG_NUM[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider270">
+      <obj_property name="label">i</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB_READ/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+</wave_config>

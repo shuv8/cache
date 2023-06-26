@@ -1,6 +1,6 @@
 Vivado Simulator v2022.2
 Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L fifo_generator_v13_2_7 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_ram_interface_behav xil_defaultlib.tb_ram_interface xil_defaultlib.glbl -log elaborate.log 
+Running: C:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L fifo_generator_v13_2_7 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot TB_READ_behav xil_defaultlib.TB_READ xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -8,6 +8,7 @@ Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.cpu_interface
 Compiling module fifo_generator_v13_2_7.fifo_generator_v13_2_7_sync_stag...
 Compiling module fifo_generator_v13_2_7.fifo_generator_v13_2_7_bhv_ver_a...
 Compiling module fifo_generator_v13_2_7.fifo_generator_v13_2_7_CONV_VER(...
@@ -18,6 +19,20 @@ Compiling module fifo_generator_v13_2_7.fifo_generator_v13_2_7_CONV_VER(...
 Compiling module fifo_generator_v13_2_7.fifo_generator_vlog_beh(C_DATA_C...
 Compiling module xil_defaultlib.fifo_generator_1
 Compiling module xil_defaultlib.ram_interface
-Compiling module xil_defaultlib.tb_ram_interface
+Compiling module xil_defaultlib.tag_mem_line
+Compiling module xil_defaultlib.or_32
+Compiling module xil_defaultlib.encoder_32
+Compiling module xil_defaultlib.hit_ks
+Compiling module xil_defaultlib.line_ks
+Compiling module xil_defaultlib.lfu_ks
+Compiling module xil_defaultlib.ltag_ks_default
+Compiling module xil_defaultlib.tag_mem_default
+Compiling module xil_defaultlib.control_unit
+Compiling module xil_defaultlib.wdata_ks
+Compiling module xil_defaultlib.ram_tag_ks
+Compiling module xil_defaultlib.r_data_ks
+Compiling module xil_defaultlib.cache_default
+Compiling module xil_defaultlib.cache_memory_default
+Compiling module xil_defaultlib.TB_READ
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_ram_interface_behav
+Built simulation snapshot TB_READ_behav

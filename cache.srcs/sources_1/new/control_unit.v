@@ -76,8 +76,8 @@ module control_unit(
             if (state == DEFAULT) begin
                 if (hit === 1 & cpu_rd === 1) state <= RD_HIT;
                 else if (hit === 1 & cpu_wr === 1) state <= WR_HIT; 
-                else if (hit !== 1 & lm !== 1) state <= RD_RAM;
-                else if (hit !== 1 & lm === 1) state <= WR_RAM;
+                else if (hit !== 1 & lm !== 1 & (cpu_rd || cpu_wr)) state <= RD_RAM;
+                else if (hit !== 1 & lm === 1 & (cpu_rd || cpu_wr)) state <= WR_RAM;
                 else state <= DEFAULT;
             end else if (state == RD_RAM) begin
                 if (ram_ack === 1) begin
