@@ -111,10 +111,42 @@ module TB_READ_MH();
         
         for(i=0; i<9; i=i+1)
             @(negedge ram_clk);
-        ram_rdata = 8'b1111_1111;
+        ram_rdata = 8'b0000_0001;
         ram_ack = 1;
-        for(i=0; i<16; i=i+1)
-            @(negedge ram_clk);
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_0010;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_0011;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_0100;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_0101;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_0110;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_0111;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_1000;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_1001;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_1010;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_1011;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_1100;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_1101;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_1110;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0000_1111;
+        @(negedge ram_clk);
+        ram_rdata = 8'b0001_0000;
+        @(negedge ram_clk);
+//        for(i=0; i<16; i=i+1)
+//            @(negedge ram_clk);
+        
         ram_ack = 0;
         
         while (cpu_ack == 0)

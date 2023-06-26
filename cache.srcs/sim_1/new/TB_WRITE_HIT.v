@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module TB_READ();
+module TB_WRITE_HIT();
 
     localparam ADDR_SIZE = 16;
     localparam ADDR_TAG_SIZE = 12;

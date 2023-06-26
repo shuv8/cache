@@ -36,7 +36,7 @@ module wdata_ks(cpu_wdata, ram_data, cache_data, addr_offset, b_val, wsel, m, wd
     output wire [DATA_SIZE-1:0] wdata;
     
     wire [DATA_SIZE-1:0] data = (wsel===1)?ram_data:cache_data;
-    wire [CPU_DATA_SIZE-1:0] offset_data = data[addr_offset*8 +: CPU_DATA_SIZE];
+    wire [CPU_DATA_SIZE-1:0] offset_data = data[addr_offset[3:2]*32 +: CPU_DATA_SIZE];
     wire [CPU_DATA_SIZE-1:0] m_offset_data;
     
     assign m_offset_data = (b_val=='b0001)?{offset_data[CPU_DATA_SIZE-1:8], cpu_wdata[7:0]}:
@@ -47,10 +47,10 @@ module wdata_ks(cpu_wdata, ram_data, cache_data, addr_offset, b_val, wsel, m, wd
                          (b_val=='b1100)?{cpu_wdata[CPU_DATA_SIZE-1:16], offset_data[15:0]}:
                          (b_val=='b1111)?cpu_wdata:32'bx;
     
-    assign wdata = (m==='b1)?((addr_offset=='b0000)?{data[DATA_SIZE-1:32], m_offset_data}:
-                   (addr_offset=='b0100)?{data[DATA_SIZE-1:64], m_offset_data, data[31:0]}:
-                   (addr_offset=='b1000)?{data[DATA_SIZE-1:96], m_offset_data, data[63:0]}:
-                   (addr_offset=='b1100)?{m_offset_data, data[95:0]}:
+    assign wdata = (m==='b1)?((addr_offset[3:2]=='b00)?{data[DATA_SIZE-1:32], m_offset_data}:
+                   (addr_offset[3:2]=='b01)?{data[DATA_SIZE-1:64], m_offset_data, data[31:0]}:
+                   (addr_offset[3:2]=='b10)?{data[DATA_SIZE-1:96], m_offset_data, data[63:0]}:
+                   (addr_offset[3:2]=='b11)?{m_offset_data, data[95:0]}:
                    128'bx):data;
 endmodule
 
@@ -72,7 +72,7 @@ module r_data_ks(input_data, offset, output_data);
     input wire [3:0] offset;
     output wire [OUT_SIZE-1:0] output_data;
     
-    assign output_data = input_data[offset*8 +: OUT_SIZE];
+    assign output_data = input_data[offset[3:2]*32 +: OUT_SIZE];
 endmodule
 
 module cache(

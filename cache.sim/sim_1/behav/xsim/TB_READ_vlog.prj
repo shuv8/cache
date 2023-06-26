@@ -16,6 +16,9 @@ verilog xil_defaultlib  \
 "../../../../cache.srcs/sim_1/new/tb_modules.v" \
 "../../../../cache.srcs/sim_1/new/tb_tag_mem.v" \
 "../../../../cache.srcs/sim_1/new/TB_READ_MH.v" \
+"../../../../cache.srcs/sim_1/new/TB_LFU.v" \
+"../../../../cache.srcs/sim_1/new/TB_LFU_OF.v" \
+"../../../../cache.srcs/sim_1/new/TB_AUTO1.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

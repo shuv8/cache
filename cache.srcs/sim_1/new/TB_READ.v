@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 26.06.2023 14:16:18
+// Create Date: 26.06.2023 17:21:05
 // Design Name: 
-// Module Name: TB_READ
+// Module Name: TB_LFU
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -78,14 +78,24 @@ module TB_READ();
         ram_rnw
     );
     
+    reg [ADDR_SIZE - 1:0] addr_urandom;
+    reg [CACHE_DATA_SIZE - 1:0] Full_read_line;
+    reg [CPU_DATA_SIZE-1:0] valid_data [4096 - 1:0];
+    reg [CPU_DATA_SIZE-1:0] real_r_data;
+    reg [RAM_BUS_SIZE-1:0] ram_rdata_buf, ram_rdata_buf2;
+    
     always #2 cache_clk <= ~cache_clk;
     always #13 ram_clk <= ~ram_clk;
     always #7 cpu_clk <= ~cpu_clk;
     
     integer i;
+    integer index;
+    integer j;
+    integer wrong = 0;
+    integer test_mem_size;
+    integer test_mem_factor;
+    integer full_size;
     initial #30 begin
-     // RESET 
-        
         // RESET 
         
         cache_reset = 1;
@@ -100,63 +110,107 @@ module TB_READ();
         ram_reset = 0;
         cpu_reset = 0;
         
-        for(i=0; i<2; i=i+1)
+        for(i=0; i<10; i=i+1)
             @(negedge ram_clk);
             
-            
-        // Read - miss
-        @(negedge cpu_clk);
-        cpu_rd = 1;
-        cpu_addr = 16'b0000_0000_1101_0100;
-        @(negedge cpu_clk);
-        cpu_rd = 0;
-        cpu_addr = 16'b0;
+        for (i=0; i<10; i=i+1)
+            @(negedge cache_clk);
         
-        for(i=0; i<9; i=i+1)
-            @(negedge ram_clk);
-        ram_rdata = 8'b1111_0000;
-        ram_ack = 1;
-        for(i=0; i<16; i=i+1)
-            @(negedge ram_clk);
-        ram_ack = 0;
+        test_mem_size = 512;
+        test_mem_factor = 64; //1, 2, 4, 32, 128
+        full_size = 512 * test_mem_factor;
         
-        while (cpu_ack == 0)
-           @(negedge cpu_clk);
-           
-        for(i=0; i<5; i=i+1)
-            @(negedge ram_clk);
+        
+        $display("Tests started");
+     
+        for(j=0; j<10000; j=j+1) begin
+                
+            $display(">Iteration: %d", j + 1);
+            @(posedge cpu_clk);
+            addr_urandom = $urandom_range(0, full_size);
+            cpu_addr = addr_urandom[ADDR_SIZE - 1:0];
+            $display(">Addr: %b", cpu_addr);
+            @(negedge cpu_clk);
+            cpu_wdata = 0; 
+            ram_rdata = 0;
+            cpu_bval = 0;
+            ram_ack = 0;
+            cpu_rd = 1;
+            @(negedge cpu_clk);        
+            cpu_addr = 16'b0;
+            cpu_wdata = 32'b0;
+            cpu_bval = 'b0;
+            cpu_rd = 0;
+            cpu_wr = 0;   
             
+            while (ram_rnw == 0 && cpu_ack == 0)
+                @(negedge cpu_clk);
+                
+            if (ram_rnw) begin
+                @(negedge ram_clk);
+                ram_rdata = addr_urandom[7:0];
+                ram_rdata_buf = addr_urandom[ADDR_SIZE - 1:8];
+                ram_rdata_buf2 = ram_rdata;
+                ram_ack = 1;
+                for(i=0; i<16; i=i+1) begin
+                    @(negedge ram_clk);
+                    $display(">ram_rdata: %b", ram_rdata);
+                    ram_rdata_buf2 = ram_rdata;
+                    ram_rdata = ram_rdata_buf;
+                    ram_rdata_buf = ram_rdata_buf2;
+                end
+                ram_ack = 0;
+                ram_rdata = 0;
+                
+                while (cpu_ack == 0)
+                    @(negedge cpu_clk);
+                    
+                Full_read_line = {8{addr_urandom[ADDR_SIZE - 1:0]}};
+                
+                case (addr_urandom[3:2])
+                    'b00: real_r_data = Full_read_line[CPU_DATA_SIZE-1:0];
+                    'b01: real_r_data = Full_read_line[CPU_DATA_SIZE*2-1:CPU_DATA_SIZE];
+                    'b10: real_r_data = Full_read_line[CPU_DATA_SIZE*3-1:CPU_DATA_SIZE*2];
+                    'b11: real_r_data = Full_read_line[CPU_DATA_SIZE*4-1:CPU_DATA_SIZE*3];
+                endcase  
+                
+         
+                valid_data[addr_urandom[ADDR_SIZE - 1:4]] = real_r_data;
+              
+                
+                    if (cpu_rdata == real_r_data)
+                        $display("Result: Valid");
+                    else begin
+                        $display("Result: !!!!!!!!!!!!!!!!!!!!! INVALID (READ)");
+//                        $display(">Current: %b", cpu_rdata);
+//                        $display(">Real: %b", real_r_data);
+                        wrong = wrong + 1;
+                    end
+            end else if (~addr_urandom[15]) begin
+                //$display("Hit");
+ 
+                if (cpu_rdata == valid_data[addr_urandom[ADDR_SIZE - 1:4]])
+                    $display("Result: Valid Hit");
+                else begin
+//                    $display(">Current: %b", cpu_rdata);
+//                    $display(">Real: %b", valid_data[addr_urandom[ADDR_SIZE - 1:4]]);
+                    $display("Result: !!!!!!!!!!!!!!!!!!!!! INVALID (HIT)");
+                    wrong = wrong + 1;
+                end
+            end
             
-        // Write - hit
-        @(negedge cpu_clk);
-        cpu_wr = 1;
-        cpu_addr = 16'b0000_0000_1101_0100;
-        cpu_wdata = {4{8'b10101010}};
-        cpu_bval = 4'b0011;
-        @(negedge cpu_clk);
-        cpu_wr = 0;
-        cpu_addr = 16'b0;
-        cpu_wdata = 32'b0;
-        cpu_bval = 4'b0;
+
+            for(i=0; i<5; i=i+1)
+                @(negedge ram_clk);   
+                
+        end
+        $display("Finished");
+        $display("Wrong %d", wrong);
 
         
-        while (cpu_ack == 0)
-           @(negedge cpu_clk);
-           
-        for(i=0; i<5; i=i+1)
-            @(negedge ram_clk);
-            
-        @(negedge cpu_clk);    
-        cpu_rd = 1;
-        cpu_addr = 16'b0000_0000_1101_0100;
-        @(negedge cpu_clk);
-        cpu_rd = 0;
-        cpu_addr = 16'b0;
-        while (cpu_ack == 0)
-           @(negedge cpu_clk);
-        @(negedge cpu_clk);
-        @(negedge cpu_clk);
-        
         $finish;
-     end
+        
+    end
+
 endmodule
+
